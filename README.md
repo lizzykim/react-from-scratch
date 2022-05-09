@@ -6,4 +6,8 @@ Konstellation FrontEnd Team
 
 ### Resource
 
-https://pomb.us/build-your-own-react/
+- react <br>
+  https://pomb.us/build-your-own-react/
+
+- react-dom <br>
+  https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction
