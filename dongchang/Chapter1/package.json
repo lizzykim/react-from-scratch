@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.17.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10"
+  }
+}
