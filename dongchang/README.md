@@ -1,3 +1,11 @@
-## Summary
+### Progress
 
-[Chapter 0](https://github.com/leedc0101/react-from-scratch/tree/master/dongchang/summary/Chapter0)
+- [x] Chapter 0 : Before we start
+- [ ] Chapter 1 : The createElement Function
+- [ ] Chapter 2 : The render Function
+- [ ] Chapter 3 : Concurrent Mode
+- [ ] Chapter 4 : Fibers
+- [ ] Chapter 5 : Render and Commit Phases
+- [ ] Chapter 6 : Reconciliation
+- [ ] Chapter 7 : Function Components
+- [ ] Chapter 8 : Hooks
