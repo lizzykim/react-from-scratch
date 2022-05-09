@@ -1,14 +1,15 @@
 /** @jsx MiniReact.createElement */
+
 import MiniReact from '../utils/react.js';
 
 window.onload = function () {
-  const element = MiniReact.createElement(
-    'div',
-    {
-      className: 'foo',
-    },
-    MiniReact.createElement('div', null, 'something'),
-    MiniReact.createElement('p', null, 'Hello ', MiniReact.createElement('b', null, 'World'))
+  const element = (
+    <div className="foo">
+      <div>something</div>
+      <p>
+        Hello <b>World</b>
+      </p>
+    </div>
   );
   console.log(element);
 };

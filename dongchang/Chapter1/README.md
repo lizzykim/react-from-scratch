@@ -1,3 +1,10 @@
+# Summary
+
+1. `yarn`
+2. `npx babel --plugins @babel/plugin-transform-react-jsx index.js --out-file index_transformed.js`
+
+<br>
+
 # `createElement` Function
 
 ```js
@@ -74,7 +81,7 @@ babel이라는 빌드 툴의 도움을 받는다.
 
 먼저 `yarn add --dev @babel/core @babel/cli @babel/plugin-transform-react-jsx`로<br>
 babel pulgin을 설치해주고
-`npx babel --plugins @babel/plugin-transform-react-jsx index.js --out-file index.js`으로<br>
+`npx babel --plugins @babel/plugin-transform-react-jsx index.js --out-file index_transformed.js`으로<br>
 transform할 파일 이름을 넣어 CLI로 실행시켜주면 된다.
 
 근데 지금 상태로 돌리면 React.createElement로 변환되기 때문에<br>
@@ -113,12 +120,12 @@ export const MiniReact = {
 };
 ```
 
-따라서 MiniReact.createElement를 붙여서 Transform하게 하려면 <br>
+따라서 MiniReact.createElement를 붙여서 Transform하려면 <br>
 `/** @jsx MiniReact.createElement */` 를 붙여주면 된다.
 
 ```js
+// index.js
 /** @jsx MiniReact.createElement */
-
 import MiniReact from '../utils/react.js';
 
 window.onload = function () {
@@ -134,15 +141,16 @@ window.onload = function () {
 ```
 
 이 상태에서<br>
-`npx babel --plugins @babel/plugin-transform-react-jsx index.js --out-file index.js`<br>
+`npx babel --plugins @babel/plugin-transform-react-jsx index.js --out-file index_transformed.js`<br>
 를 실행하면 다음과 같이 변환된다.
 
 > 위의 명령어를 나눠보면, 일단 babel를 global로 설치하는건 권장하지 않아 npx를 사용했고,<br>
 > @babel/plugin-transform-react-jsx 플러그인을 이용해<br>
-> index.js를 컴파일하고, `--out-file index.js`은 그 결과를 index.js로 만들어라,<br>
-> 즉 이 경우에는 덮어 씌워라 라는 말이다.
+> index.js를 컴파일하고, `--out-file index.js`은 그 결과를 index_transformed.js로 만들어라 라는 뜻이다<br>
+> 덮어씌울려면 그냥 `--out-file index.js`로 하면 된다.
 
 ```js
+// index_transformed.js
 /** @jsx MiniReact.createElement */
 import MiniReact from '../utils/react.js';
 
