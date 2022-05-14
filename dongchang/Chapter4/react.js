@@ -32,48 +32,24 @@ function createDom(fiber) {
   return dom;
 }
 
-function commitRoot() {
-  // 한번에 완성되어 있는 wipRoot에서부터 commitWork 시작하고
-  commitWork(wipRoot.child);
-  // 다 끝나면 wipRoot를 완료했다는 의미로 null로 재할당해준다.
-  wipRoot = null;
-}
-
-function commitWork(fiber) {
-  // 만약 wipRoot에 아무것도 없으면 return
-  if (!fiber) return;
-
-  // 그게 아니라면 재귀함수로 fiber끼리 이어준다.
-  const domParent = fiber.parent.dom;
-  domParent.appendChild(fiber.dom);
-  commitWork(fiber.child);
-  commitWork(fiber.sibling);
-}
-
 function render(element, container) {
-  wipRoot = {
+  nextUnitOfWork = {
     dom: container,
     props: {
       children: [element],
     },
   };
-  nextUnitOfWork = wipRoot;
 }
 
 let nextUnitOfWork = null;
-let wipRoot = null;
 
 function workLoop(deadline) {
   let shouldYield = false;
 
   while (nextUnitOfWork && !shouldYield) {
-    // 더 이상 performUnitOfWork에서 appendChild 하지 않는다
     nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
     shouldYield = deadline.timeRemaining() < 1;
   }
-
-  // 더 이상 할일이 없고, 아직 작업 안한 wipRoot 살아있으면 commitRoot 실행
-  if (!nextUnitOfWork && wipRoot) commitRoot();
 
   requestIdleCallback(workLoop);
 }
@@ -83,6 +59,8 @@ requestIdleCallback(workLoop);
 function performUnitOfWork(fiber) {
   // fiber의 dom을 만든다
   if (!fiber.dom) fiber.dom = createDom(fiber);
+  // fiber의 부모에 이를 붙인다
+  if (fiber.parent) fiber.parent.dom.appendChild(fiber.dom);
 
   const elements = fiber.props.children;
   let index = 0;

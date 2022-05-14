@@ -33,17 +33,13 @@ function createDom(fiber) {
 }
 
 function commitRoot() {
-  // 한번에 완성되어 있는 wipRoot에서부터 commitWork 시작하고
   commitWork(wipRoot.child);
-  // 다 끝나면 wipRoot를 완료했다는 의미로 null로 재할당해준다.
   wipRoot = null;
 }
 
 function commitWork(fiber) {
-  // 만약 wipRoot에 아무것도 없으면 return
   if (!fiber) return;
 
-  // 그게 아니라면 재귀함수로 fiber끼리 이어준다.
   const domParent = fiber.parent.dom;
   domParent.appendChild(fiber.dom);
   commitWork(fiber.child);
@@ -67,7 +63,6 @@ function workLoop(deadline) {
   let shouldYield = false;
 
   while (nextUnitOfWork && !shouldYield) {
-    // 더 이상 performUnitOfWork에서 appendChild 하지 않는다
     nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
     shouldYield = deadline.timeRemaining() < 1;
   }
