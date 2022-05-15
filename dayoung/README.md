@@ -1,6 +1,6 @@
 - [x] Chapter 0 : Before we start
-- [ ] Chapter 1 : The createElement Function
-- [ ] Chapter 2 : The render Function
+- [x] Chapter 1 : The createElement Function
+- [x] Chapter 2 : The render Function
 - [ ] Chapter 3 : Concurrent Mode
 - [ ] Chapter 4 : Fibers
 - [ ] Chapter 5 : Render and Commit Phases
